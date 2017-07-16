@@ -19,6 +19,12 @@ header div{
 	justify-content: space-around;
 }
 
-header div nav {
-	margin-right: 10px;
+
+header div nav ul{
+	display: flex;
+	justify-content: space-around;
+} 
+header div nav ul li a {
+	list-style: none;
 }
+
