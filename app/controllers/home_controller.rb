@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+	before_action :authenticate_user!, except: [:index, :home ,:browse_exp]
 
 
 
@@ -6,5 +7,12 @@ class HomeController < ApplicationController
 def index
 	
 end
+
+def share_exp
+	end
+
+	def browse_exp
+	end
+
 
 end
