@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyString
+  tips: MyString
+  round_no: 
+  user_id: 
+
+two:
+  content: MyString
+  tips: MyString
+  round_no: 
+  user_id: 
