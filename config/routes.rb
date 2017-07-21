@@ -1,10 +1,19 @@
 Rails.application.routes.draw do
+  get 'comment/create'
+
+  get 'comment/destroy'
+
   devise_for :users
 
    # root 'home#index'
    root 'home#index' 
-   get 'share' => 'home#share_exp'
-   get 'browse' => 'home#browse_exp'
+   get 'share' => 'experience#share_exp'
+   get 'browse' => 'experience#browse_exp'
+   get 'home' => 'home#index'
+   post 'create' =>'experience#create', as: 'experiences' 
+   post 'share' => 'home#share'
+   post 'comment/create' => 'comment#create'
+   get 'comment/new' => 'comment#new'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
