@@ -4,7 +4,7 @@ class CreateExperiences < ActiveRecord::Migration
       t.integer :round_no
       t.string :content
       t.string :tips
-     
+
       t.references :user, index: true, foreign_key: true
 
       t.timestamps null: false
