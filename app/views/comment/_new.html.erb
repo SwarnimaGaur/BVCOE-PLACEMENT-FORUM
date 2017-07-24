@@ -1,11 +1,15 @@
-<div style="background-color: red;">
-<%= form_tag url_for(:controller => "comment",:action => "create",:experience_id => 0) do%>    
+
+<%= form_tag url_for({:controller => "comment",:action => "create",method: :post}) do%>  
+	
+
     <%= text_area_tag :com %>
-    <%= submit_tag %>
+   	<%= hidden_field_tag :user_id, user_id %>
+    <%= hidden_field_tag :experience_id, session[:experience_id] %>
+   
+    <%= submit_tag "Add Comment" %>
     <!-- shduoiashdpojaspoj -->
 <% end %>
 
 
-</div>
 
 

@@ -15,13 +15,18 @@ Rails.application.routes.draw do
    get 'browse' => 'experience#browse_exp'
    get 'home' => 'home#index'
    post 'create' =>'experience#create', as: 'experiences' 
+   # get '/experience/destroy' =>'experience#destroy'
+   delete '/experience/destroy' =>'experience#destroy'
+   get '/edit/:experience_id/experience' => 'experience#edit' 
+   post 'experience/:experience_id' => 'experience#update'
    post 'share' => 'home#share'
    post 'comment/create' => 'comment#create'
    post 'browse' => 'comment#create'
    post 'upvote/create' => 'upvote#create'
-   resources :experiences do
-  resources :upvotes, only: [:create, :destroy]
-end
+   delete '/comment/destroy' =>'comment#destroy'
+
+
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

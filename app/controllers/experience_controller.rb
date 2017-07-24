@@ -6,17 +6,26 @@ class ExperienceController < ApplicationController
 
 	end
 
+
+	def edit
+		@experience= Experience.find(params[:experience_id])
+end
+
+
+def update
+	 @experience = Experience.find(params[:experience_id])
+  @experience.update(round_no: params[:round_no], content: params[:content])
+  redirect_to url_for(:controller => :experience, :action => :browse_exp)
+end
+
 	def browse_exp
-		@experiences =Experience.includes(:comments).all.order(created_at: :desc)
-		@comment =Comment.new
-		@comments =Comment.where(experience_id: params[:experience_id])
-		@upvotes =Upvote.where(experience_id: params[:experience_id], user_id: params[:user_id])
-	
-	end
+		@experiences =Experience.includes(:comments, :upvotes).all.order(created_at: :desc)
+		
+			end
 
 	def create
 	@experience=Experience.new(experience_params)
-	@comment = Comment.new( :experience => @experience )
+	# @comment = Comment.new(experience: => @experience )
 	@experience.user_id = current_user.id
 	@experience.save
 	if @experience.save
@@ -28,8 +37,18 @@ class ExperienceController < ApplicationController
 
 	def experience_params
 
-	  params.require(:experience).permit(:round_no, :content, :tips, :user_id)
+	  params.require(:experience).permit(:round_no , :content, :tips)
 		end
+def edit
+@experience=Experience.find(params[:experience_id])
+
+end
+
+def destroy
+ 	@experience = Experience.find(params[:experience_id])
+	@experience.destroy
+	redirect_to url_for(:controller => :experience, :action => :browse_exp)
+end
 
 end
 
