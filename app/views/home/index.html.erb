@@ -1,4 +1,40 @@
-<h1>Hi</h1>
+<br>
+<br>
+<br>
 
-<%= link_to "Share your exp", url_for(action: 'share_exp', controller: 'experience') %>
-<%= link_to "Browse your exp", url_for(action: 'browse_exp', controller: 'experience',experience_id: "a", user_id: "asd",asd: "Asd") %>
+<main>
+<div class="parallax-container">
+      <div class="parallax"><%= image_tag("pic_2.jpg") %> </div>
+    </div>
+
+    <div class="section white">
+    <div class="row container">
+      <h2 class="header">Placements</h2>
+      <p class="grey-text text-darken-3 lighten-3">Parallax is an effect where the background content or image in this case, is moved at a different speed than the foreground content while scrolling.Cupcake ipsum dolor sit. Amet marshmallow muffin. Apple pie cotton candy soufflé tart apple pie dessert lollipop. Chocolate bar caramels soufflé lollipop chocolate bear claw sweet roll jujubes. Bear claw danish toffee bear claw sweet roll sweet roll pudding jelly beans. Danish cookie gummi bears. Gummi bears danish danish pastry brownie sugar plum. Gummi bears chocolate cake donut sweet sesame snaps sesame snaps marzipan biscuit. Dessert jelly-o muffin gummies cookie jelly jujubes. Bear claw carrot cake sweet chocolate</p>
+    </div>
+  </div>
+  <div class="parallax-container">
+  	
+    <div class="parallax"><!-- <img src="/images/pic_3.jpg"> -->
+    	 <%= image_tag("pic_3.jpg") %> 
+    </div>
+  </div>
+ <!-- <div class="section white">
+    <div class="row container">
+    	<button type="button" class="btn btn-primary">SHARE EXP</button>
+    </div>
+   </div> -->
+   <div class="content">
+   	<br>
+   		
+   	<%= link_to "Share your experience", url_for(action: 'share_exp', controller: 'experience') ,class: "btn btn-primary"%>
+
+
+<%= link_to "Browse  experiences", url_for(action: 'browse_exp', controller: 'experience',experience_id: "a", user_id: "asd",asd: "Asd"),class: "btn btn-primary" %>
+
+
+   	</div>
+  
+
+	
+</main>
