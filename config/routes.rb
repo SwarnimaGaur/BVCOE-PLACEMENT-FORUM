@@ -7,7 +7,8 @@ Rails.application.routes.draw do
 
   get 'comment/destroy'
 
-  devise_for :users
+  # devise_for :users
+  devise_for :users, :controllers => { registrations: 'registrations' }
 
    # root 'home#index'
    root 'home#index' 
