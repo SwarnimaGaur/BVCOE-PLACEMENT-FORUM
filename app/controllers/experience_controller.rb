@@ -24,11 +24,14 @@ end
 			end
 
 	def create
+
+
 	@experience=Experience.new(experience_params)
 	# @comment = Comment.new(experience: => @experience )
 	@experience.user_id = current_user.id
 	@experience.save
 	if @experience.save
+		
 	      redirect_to url_for(:controller => :home, :action => :index)
 	    else
 	      redirect_to url_for(:controller => :home, :action => :index)
@@ -45,9 +48,22 @@ def edit
 end
 
 def destroy
- 	@experience = Experience.find(params[:experience_id])
-	@experience.destroy
-	redirect_to url_for(:controller => :experience, :action => :browse_exp)
+	
+		
+		 @experience = Experience.find(params[:experience_id])
+		 if current_user.admin? 
+		 @experience.destroy
+
+		redirect_to url_for(:controller => :experience, :action => :browse_exp)
+
+	elsif current_user.id == @experience.user_id 
+		 
+		 @experience.destroy
+
+		redirect_to url_for(:controller => :experience, :action => :browse_exp)
+	else 
+		redirect_to url_for(:controller => :experience, :action => :browse_exp)
+    end
 end
 
 end
