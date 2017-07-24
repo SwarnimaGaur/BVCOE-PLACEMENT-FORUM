@@ -2,7 +2,22 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
-
+<div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label :year_pass %><br />
+    <%= f.text_field :year_pass, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label :branch %><br />
+    <%= f.text_field :branch, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label :company %><br />
+    <%= f.text_field :company, autofocus: true %>
+  </div>
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
