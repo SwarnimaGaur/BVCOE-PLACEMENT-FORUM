@@ -1,7 +1,7 @@
 
 <%  @experiences.each do |e| %>
 
-<h1><%= e.user_id %></h1>
+<h1><%= e.user.name%></h1>
 
 <h1> <%=e.round_no %></h1>
 <h1> <%=e.content %></h1>
@@ -25,7 +25,7 @@ No. of  UPVOTES
 <h3>Comments</h3>
 <% e.comments.each do |comment|%>
   <div>
-    <strong><%= comment.user_id %></strong>
+    <strong><%= comment.user.name %></strong>
     <br>
     <p><%= comment.com %></p>
 

@@ -1,6 +1,7 @@
 class ExperienceController < ApplicationController
 	before_action :authenticate_user!, except: [:browse_exp]
 
+
 	def share_exp
 	@experience = Experience.new
 
@@ -20,7 +21,7 @@ end
 
 	def browse_exp
 		@experiences =Experience.includes(:comments, :upvotes).all.order(created_at: :desc)
-		
+		# @user_name=@experiences.user.name
 			end
 
 	def create

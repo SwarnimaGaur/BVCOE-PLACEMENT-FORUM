@@ -1,6 +1,6 @@
 class AnswerController < ApplicationController
   def create
-  	byebug
+
   	@question = Question.find(params[:question_id])
   @answer = @question.answers.new
   @answer.ans =params[:ans]

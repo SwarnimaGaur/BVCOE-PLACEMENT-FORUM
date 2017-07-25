@@ -1,13 +1,13 @@
 <%  @questions.each do |q| %>
 
-<h1><%= q.user_id %></h1>
+<h1><%= q.user.name %></h1>
 
 <h1> <%=q.ques%></h1>
 
 <h3>ANSWERS</h3>
 <% q.answers.each do |answer|%>
   <div>
-    <strong><%= answer.user_id %></strong>
+    <strong><%= answer.user.name %></strong>
     <br>
     <p><%= answer.ans %></p>
 
