@@ -24,8 +24,6 @@ end
 			end
 
 	def create
-
-
 	@experience=Experience.new(experience_params)
 	# @comment = Comment.new(experience: => @experience )
 	@experience.user_id = current_user.id
@@ -36,15 +34,15 @@ end
 	    else
 	      redirect_to url_for(:controller => :home, :action => :index)
 	    end
-	end
+	    	end
 
-	def experience_params
-
-	  params.require(:experience).permit(:round_no , :content, :tips)
+def experience_params
+	params.require(:experience).permit(:round_no , :content, :tips)
 		end
+
+
 def edit
 @experience=Experience.find(params[:experience_id])
-
 end
 
 def destroy

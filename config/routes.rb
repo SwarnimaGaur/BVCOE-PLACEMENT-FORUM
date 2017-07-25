@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+ 
+
   get 'upvote/create'
 
   get 'upvote/destroy'
@@ -25,6 +27,16 @@ Rails.application.routes.draw do
    post 'browse' => 'comment#create'
    post 'upvote/create' => 'upvote#create'
    delete '/comment/destroy' =>'comment#destroy'
+
+    post 'answer/create' => 'answer#create'
+    get 'answer/destroy' => 'answer#destroy'
+
+  post 'question/update' => 'question#update'
+  get 'question/edit' => 'question/edit'
+  get 'question/ask' => 'question#ask'
+  post 'question/create' => 'question#create'
+  get 'question/QnA' =>'question#QnA'
+  post 'question/destroy' => 'question#destroy'
 
 
   
