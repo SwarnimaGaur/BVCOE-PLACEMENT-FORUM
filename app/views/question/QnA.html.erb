@@ -20,7 +20,7 @@
        method: :post,
        data: { confirm: "Delete this question" } %>
 
-<%= render 'answer/ans',:user_id => q.user_id, :question_id => session[:question_id] %>
+<%= render 'answer/ans',:user_id => q.user_id, :question_id => q.id %>
 
 <% end %>
 
