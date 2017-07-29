@@ -1,47 +1,12 @@
 
-<br>
-<br>
-<br>
-<br>
-<br>
-
-<ul><li>
-    <%= form_tag(:controller=> "experience", :action => "search", :method => "get", id: "search-form") do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Search" %>
-    <%= submit_tag "Search", :name => nil %>
-<% end %>
-</li></ul>
-
-<%= link_to 'Share experience',  { action: :share_exp }, 
-       method: :get,
-       data: { confirm: 'Leave this page?' } %>
-       
-
-<% if user_signed_in? %>
-  <li>
-  <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
-  </li>
-<% else %>
-  <li>
-  <%= link_to('Login', new_user_session_path)  %>  
-  </li>
-<% end %>
-
-
 <%  @experiences.each do |e| %>
 
-<h1>Name:<%= e.user.name%></h1>
-<h1>company:<%=e.user.company%></h1>
-<h1>Branch:<%=e.user.branch%></h1>
-<h1>Year_pass:<%=e.user.year_pass%></h1>
+<h1><%= e.user.name%></h1>
 
 <h1> <%=e.round_no %></h1>
 <h1> <%=e.content %></h1>
 <h1> <%=e.tips%></h1>
 
-
-
-<% if user_signed_in? %>
 <%= link_to 'Edit experience',  { action: :edit, experience_id: e.id }, 
        method: :get,
        data: { confirm: "Edit this experience?" } 
@@ -49,30 +14,27 @@
 <%= link_to 'Delete experience',  { action: :destroy, experience_id: e.id }, 
        method: :delete,
        data: { confirm: "Delete this experience?" } 
-%> <%end%>
+%>
 
 <% session[:experience_id] = e.id%>
 
+No. of  UPVOTES
+<h1><%= e.upvotes.count %></h1>
 
-<p>No. of UPVOTES:   <%= e.upvotes.count %></p>
-
-<% if user_signed_in? %>
  <% if e.upvotes.where(user_id: current_user.id).first %>
- 
+
 <div>
-  <%= form_tag url_for({:controller => "upvote",:action => "destroy",method: :post} ) , remote: true do%>  
+  <%= form_tag url_for({:controller => "upvote",:action => "destroy",method: :post}) do%>  
   
     <%= hidden_field_tag :user_id, current_user.id %>
     <%= hidden_field_tag :experience_id, e.id %>
     <%= hidden_field_tag :button_id, 'experience_' + e.id.to_s + '_upvote_button' %>
-    <%= submit_tag "Destroy", id:'experience_' + e.id.to_s + '_upvote_button'  %></div>
+    <%= submit_tag "Upvote", id:'experience_' + e.id.to_s + '_upvote_button'  %></div>
     <% end %>
-
-
     <% else %>
 
 <div>
-  <%= form_tag url_for({:controller => "upvote",:action => "create",method: :post}), remote: true do%>  
+  <%= form_tag url_for({:controller => "upvote",:action => "create",method: :post}) do%>  
   
     <%= hidden_field_tag :user_id, current_user.id %>
     <%= hidden_field_tag :experience_id, e.id %>
@@ -80,8 +42,6 @@
     <%= submit_tag "Upvote", id:'experience_' + e.id.to_s + '_upvote_button'  %></div>
     <% end %>
 <% end %>
-<% end %>
-
 
 <h3>Comments</h3>
 <% e.comments.each do |comment|%>
@@ -90,16 +50,12 @@
     <br>
     <p><%= comment.com %></p>
 
-<% if user_signed_in? %>
     <%= link_to 'Delete Comment',  { action: :destroy, controller: :comment, experience_id: e.id, comment_id: comment.id }, 
        method: :delete,
        data: { confirm: "Delete this comment?" } 
 %>
   </div>
-  <% end %>
-<% end %>
 
-<% if user_signed_in? %>
-<%= render 'comment/new',:user_id => current_user.id, :experience_id => e.id %>
 <% end %>
-<%end %>
+<%= render 'comment/new',:user_id => e.user_id, :experience_id => session[:experience_id] %>
+<% end %>

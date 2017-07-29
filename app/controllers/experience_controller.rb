@@ -1,10 +1,19 @@
 class ExperienceController < ApplicationController
 	before_action :authenticate_user!, except: [:browse_exp]
 
+def search
+
+@experiences= Experience.search(params[:search])
+if @experiences
+else
+	render :text => "NO experience !"
+end
+end
+
 
 	def share_exp
-	@experience = Experience.new
 
+	@experience = Experience.new
 	end
 
 
@@ -20,11 +29,21 @@ def update
 end
 
 	def browse_exp
-		@experiences =Experience.includes(:comments, :upvotes).all.order(created_at: :desc)
+		 @experiences =Experience.includes(:comments, :upvotes).all.order(created_at: :desc)
 		# @user_name=@experiences.user.name
-			end
+
+		
+		if params[:search]
+    @experiences = Experience.search(params[:search]).order("created_at DESC")
+     redirect_to url_for(:controller => :experience, :action => :search)
+  else
+    @experiences
+  end
+end
+
 
 	def create
+	
 	@experience=Experience.new(experience_params)
 	# @comment = Comment.new(experience: => @experience )
 	@experience.user_id = current_user.id

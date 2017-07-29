@@ -12,8 +12,9 @@ Rails.application.routes.draw do
   # devise_for :users
   devise_for :users, :controllers => { registrations: 'registrations' }
 
-   # root 'home#index'
    root 'home#index' 
+   post 'search' => 'experience#search'
+   get 'search' => 'experience#search'
    get 'share' => 'experience#share_exp'
    get 'browse' => 'experience#browse_exp'
    get 'home' => 'home#index'
@@ -26,6 +27,9 @@ Rails.application.routes.draw do
    post 'comment/create' => 'comment#create'
    post 'browse' => 'comment#create'
    post 'upvote/create' => 'upvote#create'
+  post   'upvote/destroy' => 'upvote#destroy'
+
+
    delete '/comment/destroy' =>'comment#destroy'
 
     post 'answer/create' => 'answer#create'

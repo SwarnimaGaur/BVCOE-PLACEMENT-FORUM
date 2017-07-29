@@ -3,20 +3,20 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
+    <br />
+    <%= f.text_field :name, autofocus: true, required: true, placeholder: "Name" %>
   </div>
   <div class="field">
     <%= f.label :year_pass %><br />
-    <%= f.text_field :year_pass, autofocus: true %>
+    <%= f.text_field :year_pass, autofocus: true, required: true, placeholder: "YEAR OF GRADUATION"%>
   </div>
   <div class="field">
-    <%= f.label :branch %><br />
-    <%= f.text_field :branch, autofocus: true %>
+    <br />
+    <%= f.text_field :branch, autofocus: true, required: true, placeholder: "BRANCH"%>
   </div>
   <div class="field">
     <%= f.label :company %><br />
-    <%= f.text_field :company, autofocus: true %>
+    <%= f.text_field :company, autofocus: true, required: true, placeholder: "COMPANY/PLACED IN/GOING TO BE PLACED"%>
   </div>
   <div class="field">
     <%= f.label :email %><br />

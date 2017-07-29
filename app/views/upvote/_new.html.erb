@@ -1,8 +1,0 @@
-<%= form_tag url_for({:controller => "upvote",:action => "create",method: :post}) do%>  
-	
-   	<%= hidden_field_tag :user_id, user_id %>
-    <%= hidden_field_tag :experience_id, session[:experience_id] %>
-   
-    <%= submit_tag "Upvote", class: 'upvote-submit' %>
-    <!-- shduoiashdpojaspoj -->
-<% end %>

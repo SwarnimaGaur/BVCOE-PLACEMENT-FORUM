@@ -4,20 +4,25 @@
   <h3>Welcome  Admin</h3>
 
 <% else %>
-  <h3>Welcome User</h3>
+  <h3>Welcome <%= current_user.name %></h3>
 <% end %>
 
 <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
 
-<%= form_for @experience, :url => { :action => "create" } do |f| %>
+<%= form_for @experience, :url => { :action => "create" }, :html => {:id => "form1"} do |f| %>
   Round Number 1: <%= f.text_field :round_no %><br />
   Content: <%= f.text_area :content %><br />
   Tips : <%= f.text_area :tips %><br />
-  <%= f.submit %>
+  <%= f.submit id: 'form1_submit_button' %>
 <% end %>
 
+<%= form_for @experience, :url => { :action => "create" }, :html => {:id => "form2"} do |f| %>
+  Round Number 2: <%= f.text_field :round_no %><br />
+  Content: <%= f.text_area :content %><br />
+  Tips : <%= f.text_area :tips %><br />
+  <%= f.submit id: 'form2_submit_button' %>
+<% end %>
 
-<form action="create" method="post">
-    Answer: <input type="text" name="number" />
+<div class="efirst sesadas asdas dsa dasd a sd asd asd "></div>
 
-<input type="submit" name="submit">
+

@@ -1,5 +1,5 @@
 class QuestionController < ApplicationController
-
+before_action :authenticate_user!
   def create
 	@question=Question.new(params.require(:question).permit(:ques ,:id))
 
