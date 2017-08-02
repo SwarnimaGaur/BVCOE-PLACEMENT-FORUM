@@ -3,7 +3,7 @@
 	
 
     <%= text_area_tag :ans %>
-   	<%= hidden_field_tag :user_id, user_id %>
+   	<%= hidden_field_tag :user_id, current_user.id %>
     <%= hidden_field_tag :question_id, question_id %>
 
    

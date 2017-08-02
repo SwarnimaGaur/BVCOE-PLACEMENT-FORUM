@@ -14,6 +14,23 @@ class AnswerController < ApplicationController
   end
   end
 
-  def destroy
-  end
+  
+def destroy
+     @answer = Answer.find(params[:id])
+     if current_user.admin? 
+     @answer.destroy
+
+    redirect_to url_for(:controller => :question, :action => :QnA)
+
+  elsif current_user.id == @answer.user_id 
+     
+     @answer.destroy
+
+    redirect_to url_for(:controller => :question, :action => :QnA)
+  else 
+    redirect_to url_for(:controller => :question, :action => :QnA)
+    end
 end
+end
+
+

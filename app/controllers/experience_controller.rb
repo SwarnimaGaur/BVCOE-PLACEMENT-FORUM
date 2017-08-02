@@ -18,13 +18,15 @@ end
 
 
 	def edit
-		@experience= Experience.find(params[:experience_id])
+		@experience= Experience.find(params[:id])
 end
 
 
 def update
 	 @experience = Experience.find(params[:experience_id])
-  @experience.update(round_no: params[:round_no], content: params[:content])
+	 @experience.save
+  @experience.update(round_no: params[:round_no], content: params[:content],tips: params[:tips])
+  # @experience.save
   redirect_to url_for(:controller => :experience, :action => :browse_exp)
 end
 
@@ -60,10 +62,6 @@ def experience_params
 	params.require(:experience).permit(:round_no , :content, :tips)
 		end
 
-
-def edit
-@experience=Experience.find(params[:experience_id])
-end
 
 def destroy
 	

@@ -1,10 +1,4 @@
 
-<br>
-<br>
-<br>
-<br>
-<br>
-
 <ul><li>
     <%= form_tag(:controller=> "experience", :action => "search", :method => "get", id: "search-form") do %>
     <%= text_field_tag :search, params[:search], placeholder: "Search" %>
@@ -35,22 +29,25 @@
 <h1>Branch:<%=e.user.branch%></h1>
 <h1>Year_pass:<%=e.user.year_pass%></h1>
 
-<h1> <%=e.round_no %></h1>
-<h1> <%=e.content %></h1>
-<h1> <%=e.tips%></h1>
+
+
+<h3>ROUND NUMBER: <%=e.round_no%></h3>
+<h1> Experience: <%=e.content %></h1>
+<h1> Tips: <%=e.tips%></h1>
 
 
 
 <% if user_signed_in? %>
-<%= link_to 'Edit experience',  { action: :edit, experience_id: e.id }, 
-       method: :get,
-       data: { confirm: "Edit this experience?" } 
+<% if current_user.id == e.user_id %>
+<%= link_to 'Edit experience', edit_experience_path(id: e.id) ,
+       method: :get
+       # data: { confirm: "Edit this experience?" } 
 %>
 <%= link_to 'Delete experience',  { action: :destroy, experience_id: e.id }, 
        method: :delete,
        data: { confirm: "Delete this experience?" } 
 %> <%end%>
-
+<%end%>
 <% session[:experience_id] = e.id%>
 
 
@@ -60,19 +57,19 @@
  <% if e.upvotes.where(user_id: current_user.id).first %>
  
 <div>
-  <%= form_tag url_for({:controller => "upvote",:action => "destroy",method: :post} ) , remote: true do%>  
+  <%= form_tag url_for({:controller => "upvote",:action => "destroy",method: :post} )  do%>  
   
     <%= hidden_field_tag :user_id, current_user.id %>
     <%= hidden_field_tag :experience_id, e.id %>
     <%= hidden_field_tag :button_id, 'experience_' + e.id.to_s + '_upvote_button' %>
-    <%= submit_tag "Destroy", id:'experience_' + e.id.to_s + '_upvote_button'  %></div>
+    <%= submit_tag "Destroy Upvote", id:'experience_' + e.id.to_s + '_upvote_button'  %></div>
     <% end %>
 
 
     <% else %>
 
 <div>
-  <%= form_tag url_for({:controller => "upvote",:action => "create",method: :post}), remote: true do%>  
+  <%= form_tag url_for({:controller => "upvote",:action => "create",method: :post}) do%>  
   
     <%= hidden_field_tag :user_id, current_user.id %>
     <%= hidden_field_tag :experience_id, e.id %>
@@ -86,11 +83,11 @@
 <h3>Comments</h3>
 <% e.comments.each do |comment|%>
   <div>
-    <strong><%= comment.user.name %></strong>
-    <br>
+    <strong><%= comment.user.name %> says:</strong>
     <p><%= comment.com %></p>
 
 <% if user_signed_in? %>
+<% if current_user.id == comment.user_id %>
     <%= link_to 'Delete Comment',  { action: :destroy, controller: :comment, experience_id: e.id, comment_id: comment.id }, 
        method: :delete,
        data: { confirm: "Delete this comment?" } 
@@ -98,8 +95,9 @@
   </div>
   <% end %>
 <% end %>
-
+<%end %>
 <% if user_signed_in? %>
 <%= render 'comment/new',:user_id => current_user.id, :experience_id => e.id %>
 <% end %>
-<%end %>
+<% end %>
+

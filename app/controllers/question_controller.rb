@@ -13,11 +13,7 @@ else
 
 end
 
-def update
-	@question = Question.find(id: params[:id])
-	@question.update(ques: params[:ques], id: params[:id], user_id: params[:user_id])
-  redirect_to url_for(:controller => :question, :action => :QnA)
-	end
+
 
   def destroy
 		 @question = Question.find(params[:id])
@@ -44,7 +40,15 @@ def ask
 
   
   def edit
-@questions=Question.find(params[:user_id])
+@questions=Question.find(params[:id])
+end
+
+def update
+		 @question = Question.find(params[:id])
+	 @question.save
+  @question.update(ques: params[:ques])
+  # @experience.save
+  redirect_to url_for(:controller => :question, :action => :QnA)
 end
 
   def QnA

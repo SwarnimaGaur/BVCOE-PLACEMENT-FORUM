@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+
   <title>Placement</title>
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <%= stylesheet_link_tag   'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -11,7 +15,8 @@
 	
 
 </head>
-<body>
+
+<body class="<%= controller_name %> <%= action_name %>">
 <% if notice %>
   <p class="alert alert-success"><%= notice %></p>
 <% end %>

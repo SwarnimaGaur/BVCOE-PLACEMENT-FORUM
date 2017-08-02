@@ -21,26 +21,28 @@ Rails.application.routes.draw do
    post 'create' =>'experience#create', as: 'experiences' 
    # get '/experience/destroy' =>'experience#destroy'
    delete '/experience/destroy' =>'experience#destroy'
-   get '/edit/:experience_id/experience' => 'experience#edit' 
-   post 'experience/:experience_id' => 'experience#update'
+  get 'experience/:id/edit' => 'experience#edit' , as: :edit_experience 
+  post 'experience/:id', to: 'experience#update'
    post 'share' => 'home#share'
    post 'comment/create' => 'comment#create'
    post 'browse' => 'comment#create'
    post 'upvote/create' => 'upvote#create'
-  post   'upvote/destroy' => 'upvote#destroy'
+  post  'upvote/destroy' => 'upvote#destroy'
 
 
    delete '/comment/destroy' =>'comment#destroy'
 
-    post 'answer/create' => 'answer#create'
-    get 'answer/destroy' => 'answer#destroy'
+  post 'answer/create' => 'answer#create'
+  delete 'answer/destroy' => 'answer#destroy'
+  post 'upvote/createAns' => 'upvote#createAns'
+  post  'upvote/destroyAns' => 'upvote#destroyAns'
 
   post 'question/update' => 'question#update'
-  get 'question/edit' => 'question/edit'
+  get 'question/:id/edit' => 'question#edit' , as: :edit_question
   get 'question/ask' => 'question#ask'
   post 'question/create' => 'question#create'
   get 'question/QnA' =>'question#QnA'
-  post 'question/destroy' => 'question#destroy'
+  delete 'question/destroy' => 'question#destroy'
 
 
   
