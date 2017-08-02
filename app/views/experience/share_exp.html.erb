@@ -1,27 +1,33 @@
+
 <div class="border-form-div">
 
 <h2 class="headings"> Share your  experience </h2>
 <br>
 
+<h5>Feel free to share! :)</h5>
+
+
 <% if current_user.admin? %>
-  <h3>Welcome  Admin</h3>
+  <h3>Welcome Admin</h3>
 
 <% else %>
-  <h3>Welcome User</h3>
+  <h3>Welcome, <%= current_user.name %>!</h3>
 <% end %>
 
 <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
 
-<%= form_for @experience, :url => { :action => "create" } do |f| %>
-  Round Number 1: <%= f.text_field :round_no %><br />
-  Content: <%= f.text_area :content %><br />
-  Tips : <%= f.text_area :tips %><br />
-  <%= f.submit %>
+<%= form_for @experience, :url => { :action => "create" }, :html => {:id => "form1"} do |f| %>
+ <%= f.text_field :round_no, required: true, placeholder: "ROUND NUMBER" %><br />
+   <%= f.text_area :content, required: true, placeholder: "Experience"%><br />
+  <%= f.text_area :tips, placeholder: "Tips" %><br />
+  <%= button_tag(type: 'submit', class: "btn btn-defaut") do %>
+  <span class="glyphicon glyphicon-thumbs-up"></span> 
 <% end %>
+   <% end %>
 
 
-<form action="create" method="post">
-    Answer: <input type="text" name="number" />
+
+
 
 <input type="submit" name="submit">
 

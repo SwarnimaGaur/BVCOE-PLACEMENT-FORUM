@@ -1,6 +1,10 @@
 class CommentController < ApplicationController
+ 
+
   def create
+  
   @experience = Experience.find(params[:experience_id])
+  # if @experiences
   @comment = @experience.comments.new
   @comment.com =params[:com]
   @comment.experience_id = params[:experience_id]
@@ -11,7 +15,14 @@ class CommentController < ApplicationController
   else 
     redirect_to url_for(:controller => :experience, :action => :share_exp)
   end
- end
+
+
+# end
+# else
+
+#   @term= params[:search]
+end
+ 
 
 
 

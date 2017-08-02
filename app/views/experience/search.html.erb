@@ -1,32 +1,3 @@
-
-
-<br>
-<br>
-<div class="exp">
-<%  @experiences.each do |e| %>
-
-<div id="usr_id">
-
-    <span class="label label-info"> User Id : <%= e.user_id %></span>
-
-</div>
-
-<div id="rnd">
-    <span class="label label-info"> Round No :  <%=e.round_no %></span>
-    <br>
-</div>
-
-<div id="content"> 
-    <%=e.content %> 
-</div> 
- <div id="tips">
-    <%=e.tips%>
-      
-</div>
-
-<div class="bt">
-
-
 <%= link_to 'Share experience',  { action: :share_exp }, 
        method: :get,
        data: { confirm: 'Leave this page?' } %>
@@ -41,8 +12,8 @@
   <%= link_to('Login', new_user_session_path)  %>  
   </li>
 <% end %>
-<% end %>
-</div>
+
+
 <%  @experiences.each do |e| %>
 
 <h1>Name:<%= e.user.name%></h1>
@@ -52,10 +23,9 @@
 
 
 
-<!-- <h3>ROUND NUMBER: <%=e.round_no%></h3>
+<h3>ROUND NUMBER: <%=e.round_no%></h3>
 <h1> Experience: <%=e.content %></h1>
 <h1> Tips: <%=e.tips%></h1>
- -->
 
 
 <% if user_signed_in? %>
@@ -63,30 +33,19 @@
 <%= link_to 'Edit experience', edit_experience_path(id: e.id) ,
        method: :get
        # data: { confirm: "Edit this experience?" } 
-
 %>
+
 <%= link_to 'Delete experience',  { action: :destroy, experience_id: e.id }, 
-       method: :delete, class: "btn btn-danger" ,
+       method: :delete,
        data: { confirm: "Delete this experience?" } 
-
 %>
-<!-- </div> -->
-
-<% session[:experience_id] = e.id%>
-
-
-  <!-- No. of Upvotes <%= e.upvotes.count %> -->
-<br>
-<br>
-<!-- <div id="comment">Comments -->
- <%end%>
 <%end%>
+<%end%>
+
 <% session[:experience_id] = e.id%>
 
-<div id="upvotes">
-<span class="label label-success">No. of UPVOTES:  <span class="badge"> <%= e.upvotes.count %></span>
-  </span>
-  </div>
+
+<p>No. of UPVOTES:   <%= e.upvotes.count %></p>
 
 <% if user_signed_in? %>
  <% if e.upvotes.where(user_id: current_user.id).first %>
@@ -111,20 +70,15 @@
     <%= hidden_field_tag :button_id, 'experience_' + e.id.to_s + '_upvote_button' %>
     <%= submit_tag "Upvote", id:'experience_' + e.id.to_s + '_upvote_button'  %></div>
     <% end %>
-    </div>
 <% end %>
 <% end %>
 
 
-<div id="comment">Comments
-
+<h3>Comments</h3>
 <% e.comments.each do |comment|%>
   <div>
     <strong><%= comment.user.name %> says:</strong>
     <p><%= comment.com %></p>
-
-</div>
-
 
 <% if user_signed_in? %>
 <% if current_user.id == comment.user_id %>
@@ -132,15 +86,12 @@
        method: :delete,
        data: { confirm: "Delete this comment?" } 
 %>
-  
+  </div>
   <% end %>
 <% end %>
 <%end %>
 <% if user_signed_in? %>
 <%= render 'comment/new',:user_id => current_user.id, :experience_id => e.id %>
 <% end %>
+<% end %>
 
-
-</div>
-</div>
- <% end %>

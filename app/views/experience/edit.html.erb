@@ -1,4 +1,4 @@
-<%= form_tag url_for({:controller => "experience" , :action => "update", method: :post , experience_id: @experience.id})  do %>
+<%= form_tag url_for({:controller => "experience" , :action => "update", method: :put , experience_id: @experience.id})  do %>
 
 <label>Round_no</label><br>
   <%= text_field_tag :round_no, @experience.round_no %><br>

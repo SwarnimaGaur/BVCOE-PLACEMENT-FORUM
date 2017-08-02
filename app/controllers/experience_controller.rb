@@ -1,31 +1,51 @@
 class ExperienceController < ApplicationController
 	before_action :authenticate_user!, except: [:browse_exp]
 
-	def share_exp
-	@experience = Experience.new
+def search
 
+@experiences= Experience.search(params[:search])
+if @experiences
+else
+	render :text => "NO experience !"
+end
+end
+
+
+	def share_exp
+
+	@experience = Experience.new
 	end
 
 
 	def edit
-		@experience= Experience.find(params[:experience_id])
+		@experience= Experience.find(params[:id])
 end
 
 
 def update
 	 @experience = Experience.find(params[:experience_id])
-  @experience.update(round_no: params[:round_no], content: params[:content])
+	 @experience.save
+  @experience.update(round_no: params[:round_no], content: params[:content],tips: params[:tips])
+  # @experience.save
   redirect_to url_for(:controller => :experience, :action => :browse_exp)
 end
 
 	def browse_exp
-		@experiences =Experience.includes(:comments, :upvotes).all.order(created_at: :desc)
+		 @experiences =Experience.includes(:comments, :upvotes).all.order(created_at: :desc)
+		# @user_name=@experiences.user.name
+
 		
-			end
+		if params[:search]
+    @experiences = Experience.search(params[:search]).order("created_at DESC")
+     redirect_to url_for(:controller => :experience, :action => :search)
+  else
+    @experiences
+  end
+end
+
 
 	def create
-
-
+	
 	@experience=Experience.new(experience_params)
 	# @comment = Comment.new(experience: => @experience )
 	@experience.user_id = current_user.id
@@ -36,16 +56,12 @@ end
 	    else
 	      redirect_to url_for(:controller => :home, :action => :index)
 	    end
-	end
+	    	end
 
-	def experience_params
-
-	  params.require(:experience).permit(:round_no , :content, :tips)
+def experience_params
+	params.require(:experience).permit(:round_no , :content, :tips)
 		end
-def edit
-@experience=Experience.find(params[:experience_id])
 
-end
 
 def destroy
 	

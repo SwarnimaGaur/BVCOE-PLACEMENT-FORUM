@@ -1,0 +1,12 @@
+
+<%= form_tag url_for({:controller => "answer",:action => "create",method: :post}) do%>  
+	
+
+    <%= text_area_tag :ans %>
+   	<%= hidden_field_tag :user_id, current_user.id %>
+    <%= hidden_field_tag :question_id, question_id %>
+
+   
+    <%= submit_tag "Submit Answer" %>
+    <!-- shduoiashdpojaspoj -->
+<% end %>

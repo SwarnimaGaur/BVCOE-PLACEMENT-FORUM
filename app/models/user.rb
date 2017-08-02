@@ -8,4 +8,11 @@ class User < ActiveRecord::Base
 
   has_many :experiences
   has_many :comments
+  has_many :upvotes
+
+
+def self.search(search)
+  where("name LIKE ? OR email LIKE ? OR company ? OR year_pass company ? OR branch ?", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%") 
+end
+
 end

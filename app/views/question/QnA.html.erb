@@ -1,0 +1,96 @@
+
+<% if user_signed_in? %>
+  <li>
+  <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
+  </li>
+<% else %>
+  <li>
+  <%= link_to('Login', new_user_session_path)  %>  
+  </li>
+<% end %>
+
+
+<%  @questions.each do |q| %>
+<h1> Question:<%=q.ques%></h1>
+
+<% if user_signed_in? %>
+<% if current_user.id == q.user_id %>
+
+
+<div>
+<%= link_to 'Edit question', edit_question_path(id: q.id) ,
+       method: :get
+       # data: { confirm: "Edit this experience?" } 
+
+%></div>
+
+<div>
+       <%= link_to 'Delete question',  { action: :destroy, user_id: current_user.id, id: q.id }, 
+       method: :delete,
+       data: { confirm: "Delete this question" } %>
+       
+ </div>
+  <%end%>
+  <%end%>
+
+
+
+
+
+
+<h3>ANSWERS</h3>
+<% q.answers.each do |answer|%>
+  <div>
+   
+    <br>
+    <p><%= answer.ans %></p>
+
+    <% if user_signed_in? %>
+<% if current_user.id == answer.user_id %>
+
+
+<p>No. of UPVOTES:   <%= answer.upvotes.count %></p>
+
+ <% if answer.upvotes.where(user_id: current_user.id).first %>
+ 
+<div>
+  <%= form_tag url_for({:controller => "upvote",:action => "destroyAns",method: :post} )  do%>  
+  
+    <%= hidden_field_tag :user_id, current_user.id %>
+    <%= hidden_field_tag :id, answer.id %>
+    <%= hidden_field_tag :button_id, 'answer_' + answer.id.to_s + '_upvote_button' %>
+    <%= submit_tag "Destroy Upvote", id:'answer_' + answer.id.to_s + '_upvote_button'  %></div>
+  
+  <% end %>
+   <% else %>
+
+<div>
+  <%= form_tag url_for({:controller => "upvote",:action => "createAns",method: :post}) do%>  
+  
+    <%= hidden_field_tag :user_id, current_user.id %>
+    <%= hidden_field_tag :id, answer.id %>
+    <%= hidden_field_tag :button_id, 'answer_' + answer.id.to_s + '_answer_button' %>
+    <%= submit_tag "Upvote", id:'answer_' + answer.id.to_s + '_upvote_button'  %></div>
+    <%end%>
+
+<div>
+    <%= link_to 'Delete answer',  { action: :destroy, controller: :answer, question_id: q.id, id: answer.id }, 
+       method: :delete,
+       data: { confirm: "Delete this answer?" } 
+%>
+  </div>
+  <%end%>
+<%end%>
+<%end%>
+<%end%>	
+
+
+<%= render 'answer/ans',:user_id => q.user_id, :question_id => q.id %>
+
+<% end %>
+<h1><%= link_to 'Ask a question',  { action: :ask }, 
+       method: :get %></h1>
+
+
+       
+
