@@ -29,7 +29,18 @@
    </div> -->
    <div class="content">
    	<br>
-   		
+   		<div id="progress-bar"></div>
+
+      <script type="text/javascript">
+       
+        var ProgressBar = require('progressbar.js');
+
+// Assuming we have an empty <div id="container"></div> in
+// HTML
+var bar = new ProgressBar.Line('#progress-bar', {easing: 'easeInOut'});
+bar.animate(1);  // Value from 0.0 to 1.0
+      </script>
+
    	<%= link_to "Share your experience", url_for(action: 'share_exp', controller: 'experience') ,class: "btn btn-primary"%>
 
 

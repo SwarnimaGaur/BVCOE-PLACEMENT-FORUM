@@ -1,34 +1,54 @@
 
+<br>
+<br>
+<div class="exp">
 <%  @experiences.each do |e| %>
 
-<h1><%= e.user_id %></h1>
+<div id="usr_id">
 
-<h1> <%=e.round_no %></h1>
-<h1> <%=e.content %></h1>
-<h1> <%=e.tips%></h1>
+    <span class="label label-info"> User Id : <%= e.user_id %></span>
 
+</div>
+
+<div id="rnd">
+    <span class="label label-info"> Round No :  <%=e.round_no %></span>
+    <br>
+</div>
+
+<div id="content"> 
+    <%=e.content %> 
+</div> 
+ <div id="tips">
+    <%=e.tips%>
+      
+</div>
+
+<div class="bt">
 <%= link_to 'Edit experience',  { action: :edit, experience_id: e.id }, 
-       method: :get,
+       method: :get, class: "btn btn-info" ,
        data: { confirm: "Edit this experience?" } 
 %>
 <%= link_to 'Delete experience',  { action: :destroy, experience_id: e.id }, 
-       method: :delete,
+       method: :delete, class: "btn btn-danger" ,
        data: { confirm: "Delete this experience?" } 
 %>
+</div>
 
 <% session[:experience_id] = e.id%>
 
-No. of  UPVOTES
-<h1><%= e.upvotes.count %></h1>
-<%= render 'upvote/new',:user_id => current_user.id, :experience_id => session[:experience_id] %>
-
-<h3>Comments</h3>
+<div id="upvotes">
+ <span class="label label-success"> No. of Upvotes <span class="badge"><%= e.upvotes.count %></span>
+  </span>
+  </div>
+<br>
+<br>
+<div id="comment">Comments
 <% e.comments.each do |comment|%>
   <div>
     <strong><%= comment.user_id %></strong>
     <br>
     <p><%= comment.com %></p>
-
+</div>
     <%= link_to 'Delete Comment',  { action: :destroy, controller: :comment, experience_id: e.id, comment_id: comment.id }, 
        method: :delete,
        data: { confirm: "Delete this comment?" } 
@@ -38,3 +58,5 @@ No. of  UPVOTES
 <% end %>
 <%= render 'comment/new',:user_id => e.user_id, :experience_id => session[:experience_id] %>
 <% end %>
+
+</div>
