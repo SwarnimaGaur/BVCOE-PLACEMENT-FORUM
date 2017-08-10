@@ -23,7 +23,7 @@
               <%= experience.tips %>
             </div>
             <div id='actions'>
-              
+
               <% if user_signed_in? %>
                   <% if current_user.id == experience.user_id %>
                       <%= link_to edit_experience_path(id: experience.id),
