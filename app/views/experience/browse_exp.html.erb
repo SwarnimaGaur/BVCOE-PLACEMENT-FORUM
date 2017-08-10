@@ -1,146 +1,119 @@
+<div class="accordion_container">
+  <% @experiences.each do |experience| %>
+      <div class="accordion">
+        <dl>
+          <dt>
+            <a href="#<%= 'experience_' + experience.id.to_s %>" aria-expanded="false" aria-controls="accordion1" class="accordion-title accordionTitle js-accordionTrigger">
+              <div>
+                <span><%= experience.user.company.capitalize %></span>
+                <span><%= experience.user.name.capitalize %></span>
+                <span><%= experience.round_no %></span>
+                <span>Branch:<%= experience.user.branch %></span>
+                <span>Passing Year:<%= experience.user.year_pass %><span>
+              </div>
+            </a>
+          </dt>
+          <dd class="accordion-content accordionItem is-collapsed" id="<%= 'experience_' + experience.id.to_s %>" aria-hidden="true">
+            <div id='upper-actions'>
+            </div>
+            <div id="content">
+              <%= experience.content %>
+            </div>
+            <div id="tips">
+              <%= experience.tips %>
+            </div>
+            <div id='actions'>
+              
+              <% if user_signed_in? %>
+                  <% if current_user.id == experience.user_id %>
+                      <%= link_to edit_experience_path(id: experience.id),
+                                  method: :get do %>
+                          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                            <i class="material-icons">mode_edit</i> Edit
+                          </button>
+                      <% end %>
+                      <%= link_to url_for(action: :destroy, experience_id: experience.id), method: :delete, data: {confirm: "Delete this experience?"} do %>
+                          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                            <i class="material-icons">delete</i></button>
+                      <% end %>
+                      <% session[:experience_id] = experience.id %>
+                  <% end %>
+                  <% session[:experience_id] = experience.id %>
+              <% end %>
+            </div>
+            <div id="upvotes">
+              <% if user_signed_in? %>
+                  <% if experience.upvotes.where(user_id: current_user.id).first %>
+                      <div>
+                        <%= form_tag url_for({:controller => "upvote", :action => "destroy", method: :post}) do %>
 
+                            <%= hidden_field_tag :user_id, current_user.id %>
+                            <%= hidden_field_tag :experience_id, experience.id %>
+                            <%= hidden_field_tag :button_id, 'experience_' + experience.id.to_s + '_upvote_button' %>
+                            <button class=>Button</button>
+                            <%= button_tag 'Delete Upvote', class: "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent", options: {
+                                id: 'experience_' + experience.id.to_s + '_upvote_button',
 
-<br>
-<br>
-<div class="exp">
-<%  @experiences.each do |e| %>
+                                type: :submit
+                            } %>
+                            </div>
+                        <% end %>
+                  <% else %>
+                      <div>
+                        <%= form_tag url_for({:controller => "upvote", :action => "create", method: :post}) do %>
 
-<div id="usr_id">
+                            <%= hidden_field_tag :user_id, current_user.id %>
+                            <%= hidden_field_tag :experience_id, experience.id %>
+                            <%= hidden_field_tag :button_id, 'experience_' + experience.id.to_s + '_upvote_button' %>
+                            <%= button_tag "Upvote", class: "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent", options: {
+                                id: 'experience_' + experience.id.to_s + '_upvote_button',
+                                type: :submit
+                            } %>
+                            </div>
+                        <% end %>
+                        </div>
+                  <% end %>
+                  <!-- <i class="material-icons">keyboard_arrow_up</i>
+                  <i class="material-icons">keyboard_arrow_down</i> -->
+                  </div>
+                  <div id="comment_container">
+                    <% experience.comments.each do |comment| %>
+                        <div class="comment">
+                          <div class="comment_main">
+                            <%= comment.user.name %>
+                            <% if user_signed_in? %>
+                                <% if current_user.id == comment.user_id %>
+                                    <%= link_to url_for(action: :destroy, controller: :comment, experience_id: experience.id,
+                                                        comment_id: comment.id),
+                                                method: :delete,
+                                                data: {confirm: "Delete this comment?"} do %>
+                                        <button class="mdl-button mdl-js-button mdl-button--icon">
+                                          <i class="material-icons">delete</i>
+                                        </button>
 
-    <span class="label label-info"> User Id : <%= e.user_id %></span>
-
-</div>
-
-<div id="rnd">
-    <span class="label label-info"> Round No :  <%=e.round_no %></span>
-    <br>
-</div>
-
-<div id="content"> 
-    <%=e.content %> 
-</div> 
- <div id="tips">
-    <%=e.tips%>
-      
-</div>
-
-<div class="bt">
-
-
-<%= link_to 'Share experience',  { action: :share_exp }, 
-       method: :get,
-       data: { confirm: 'Leave this page?' } %>
-       
-
-<% if user_signed_in? %>
-  <li>
-  <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
-  </li>
-<% else %>
-  <li>
-  <%= link_to('Login', new_user_session_path)  %>  
-  </li>
-<% end %>
-<% end %>
-</div>
-<%  @experiences.each do |e| %>
-
-<h1>Name:<%= e.user.name%></h1>
-<h1>company:<%=e.user.company%></h1>
-<h1>Branch:<%=e.user.branch%></h1>
-<h1>Year_pass:<%=e.user.year_pass%></h1>
-
-
-
-<!-- <h3>ROUND NUMBER: <%=e.round_no%></h3>
-<h1> Experience: <%=e.content %></h1>
-<h1> Tips: <%=e.tips%></h1>
- -->
-
-
-<% if user_signed_in? %>
-<% if current_user.id == e.user_id %>
-<%= link_to 'Edit experience', edit_experience_path(id: e.id) ,
-       method: :get
-       # data: { confirm: "Edit this experience?" } 
-
-%>
-<%= link_to 'Delete experience',  { action: :destroy, experience_id: e.id }, 
-       method: :delete, class: "btn btn-danger" ,
-       data: { confirm: "Delete this experience?" } 
-
-%>
-<!-- </div> -->
-
-<% session[:experience_id] = e.id%>
-
-
-  <!-- No. of Upvotes <%= e.upvotes.count %> -->
-<br>
-<br>
-<!-- <div id="comment">Comments -->
- <%end%>
-<%end%>
-<% session[:experience_id] = e.id%>
-
-<div id="upvotes">
-<span class="label label-success">No. of UPVOTES:  <span class="badge"> <%= e.upvotes.count %></span>
-  </span>
-  </div>
-
-<% if user_signed_in? %>
- <% if e.upvotes.where(user_id: current_user.id).first %>
- 
-<div>
-  <%= form_tag url_for({:controller => "upvote",:action => "destroy",method: :post} )  do%>  
-  
-    <%= hidden_field_tag :user_id, current_user.id %>
-    <%= hidden_field_tag :experience_id, e.id %>
-    <%= hidden_field_tag :button_id, 'experience_' + e.id.to_s + '_upvote_button' %>
-    <%= submit_tag "Destroy Upvote", id:'experience_' + e.id.to_s + '_upvote_button'  %></div>
-    <% end %>
-
-
-    <% else %>
-
-<div>
-  <%= form_tag url_for({:controller => "upvote",:action => "create",method: :post}) do%>  
-  
-    <%= hidden_field_tag :user_id, current_user.id %>
-    <%= hidden_field_tag :experience_id, e.id %>
-    <%= hidden_field_tag :button_id, 'experience_' + e.id.to_s + '_upvote_button' %>
-    <%= submit_tag "Upvote", id:'experience_' + e.id.to_s + '_upvote_button'  %></div>
-    <% end %>
-    </div>
-<% end %>
-<% end %>
-
-
-<div id="comment">Comments
-
-<% e.comments.each do |comment|%>
-  <div>
-    <strong><%= comment.user.name %> says:</strong>
-    <p><%= comment.com %></p>
-
-</div>
-
-
-<% if user_signed_in? %>
-<% if current_user.id == comment.user_id %>
-    <%= link_to 'Delete Comment',  { action: :destroy, controller: :comment, experience_id: e.id, comment_id: comment.id }, 
-       method: :delete,
-       data: { confirm: "Delete this comment?" } 
-%>
-  
+                                    <% end %>
+                                <% end %>
+                            <% end %>
+                          </div>
+                          <div class="comment_content"><%= comment.com %></div>
+                        </div>
+                    <% end %>
+                    <% if user_signed_in? %>
+                        <div class="comment_create">
+                          <%= form_tag url_for({:controller => "comment", :action => "create", method: :post}) do %>
+                              <%= text_area_tag :com %>
+                              <%= hidden_field_tag :user_id, current_user.id %>
+                              <%= hidden_field_tag :experience_id, session[:experience_id] %>
+                              <%= button_tag 'Comment',
+                                             class: "mdl-button mdl-js-button mdl-js-ripple-effect" %>
+                          <% end %>
+                        </div>
+                    <% end %>
+                  </div>
+                  </div>
+                  </dd>
+                  </dl>
+                  </div>
+                  </div>
+              <% end %>
   <% end %>
-<% end %>
-<%end %>
-<% if user_signed_in? %>
-<%= render 'comment/new',:user_id => current_user.id, :experience_id => e.id %>
-<% end %>
-
-
-</div>
-</div>
- <% end %>

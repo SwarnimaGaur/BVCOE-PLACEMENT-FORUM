@@ -1,7 +1,5 @@
+<%= form_for @question, :url => {:action => "create", :controller => "question"} do |f| %>
+    <h1>Question: <%= f.text_field :ques %><br/></h1>
 
-
-<%= form_for @question, :url => { :action => "create", :controller => "question" } do |f| %>
-  <h1>Question: <%= f.text_field :ques %><br /></h1>
-
-  <%= f.submit "Post Question" %>
+    <%= f.submit "Post Question" %>
 <% end %>

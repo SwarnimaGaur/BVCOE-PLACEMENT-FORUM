@@ -2,62 +2,64 @@
 <html>
 <head>
 
-  <title>Placement</title>
-   <meta charset="utf-8">
+  <title>BVCOE Placement Forum</title>
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <%= stylesheet_link_tag   'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <link rel="stylesheet" type="text/css" href="bootstrap.css">
-	 <link type="text/css" rel="stylesheet" href="materialize.min.css"  media="screen,projection"/>
-	 <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
-	
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 
 </head>
 
 <body class="<%= controller_name %> <%= action_name %>">
 <% if notice %>
-  <p class="alert alert-success"><%= notice %></p>
+    <p class="alert alert-success"><%= notice %></p>
 <% end %>
 <% if alert %>
-  <p class="alert alert-danger"><%= alert %></p>
+    <p class="alert alert-danger"><%= alert %></p>
 <% end %>
 <header>
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-			<div class="container" >
-			  <div class="navbar-header">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
 
-      		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      		<!-- <img src="logo1.png" id="logo"> -->
-				<a class="navbar-brand" href="#"><i class="fa fa-suitcase" aria-hidden="true"></i></a>
-					</div>		
-					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">	
-				<ul class="nav navbar-nav">
-		
-					
-					<li><a href="#">BVCOE Placement Forum</a>
- 
-				</ul>
-			 
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">Give Advice</a>
- 					<li><a href="#">Take Advice</a>
- 				</ul>
-			</div>
-				
-			</div>
-	    	
-	    </nav>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <!-- <img src="logo1.png" id="logo"> -->
+        <a class="navbar-brand" href="#"><i class="fa fa-suitcase" aria-hidden="true"></i></a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+
+
+          <li><a href="#">BVCOE Placement Forum</a>
+
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Give Advice</a>
+          <li><a href="#">Take Advice</a>
+        </ul>
+      </div>
+
+    </div>
+
+  </nav>
 </header>
- <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-      <script type="text/javascript" src="materialize.min.js"></script>
-      <script src="jquery-plugin-progressbar.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="materialize.min.js"></script>
+<script src="jquery-plugin-progressbar.js"></script>
 
 
 <%= yield %>

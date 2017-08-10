@@ -1,42 +1,53 @@
-@import "compass/css3";
+/*@import "compass/css3";
 
-$black: #333;  
+$
+black: #333
+
+;
 
 .body {
-  width: 900px;  
-  margin: 0 auto;
+    width: 900px;
+    margin: 0 auto;
 }
 
 .accordion {
-  float: left;
-  margin: 10px;   
-     h3 {
-      float: left;
-      clear: left;
-      text-transform: uppercase;
-      color: $black;
-      width: 680px;
-      font-weight: normal;
-      font-size: 20px;
-      line-height: 50px;
-      border-bottom: 1px solid $black;
-      margin: 0;
-      padding: 0;
-      a {
-        display: block;
-        color: $black;
-        font-weight: bold;
-      }
-    }
-    h3.active-title { border: none; }
-    div {
-      float: left;
-      clear: left;
-      padding: 10px;
-      border-bottom: 0; 
-        
-        &:last-of-type {
-          border-bottom: 1px solid $black; 
-        }
-    }
+    float: left;
+    margin: 10px;
+
+h3 {
+    float: left;
+    clear: left;
+    text-transform: uppercase;
+    color: $ black;
+    width: 680px;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 50px;
+    border-bottom: 1px solid $ black;
+    margin: 0;
+    padding: 0;
+
+a {
+    display: block;
+    color: $ black;
+    font-weight: bold;
 }
+
+}
+h3.active-title {
+    border: none;
+}
+
+div {
+    float: left;
+    clear: left;
+    padding: 10px;
+    border-bottom: 0;
+
+&
+:last-of-type {
+    border-bottom: 1px solid $ black;
+}
+
+}
+}*/

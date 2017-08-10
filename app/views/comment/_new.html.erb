@@ -1,14 +1,11 @@
 <div class="comment_create">
-<%= form_tag url_for({:controller => "comment",:action => "create",method: :post}) do%>  
-	
-
-    <%= text_area_tag :com %>
-   	<%= hidden_field_tag :user_id, user_id %>
-    <%= hidden_field_tag :experience_id, session[:experience_id] %>
-   
-    <%= submit_tag "Add Comment" %>
-    <!-- shduoiashdpojaspoj -->
-<% end %>
+  <%= form_tag url_for({:controller => "comment", :action => "create", method: :post}) do %>
+      <%= text_area_tag :com %>
+      <%= hidden_field_tag :user_id, user_id %>
+      <%= hidden_field_tag :experience_id, session[:experience_id] %>
+      <%= submit_tag "Add Comment" %>
+      <!-- shduoiashdpojaspoj -->
+  <% end %>
 
 </div>
 

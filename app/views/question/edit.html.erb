@@ -1,10 +1,10 @@
-<%= form_tag url_for({:controller => "question" , :action => "update", method: :post , user_id: @questions.user_id})  do %>
+<%= form_tag url_for({:controller => "question", :action => "update", method: :post, user_id: @questions.user_id}) do %>
 
-<%= @questions.user_id %>
+    <%= @questions.user_id %>
 
 
-<label>Question</label><br>
-  <%= text_field_tag :ques, @questions.ques %><br>
- <%= hidden_field_tag :id, @questions.id %><br>
-  <%= submit_tag "Done Editing" %>
+    <label>Question</label><br>
+    <%= text_field_tag :ques, @questions.ques %><br>
+    <%= hidden_field_tag :id, @questions.id %><br>
+    <%= submit_tag "Done Editing" %>
 <% end %>

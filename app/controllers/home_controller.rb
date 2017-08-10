@@ -1,10 +1,10 @@
 class HomeController < ApplicationController
-	before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index]
 
 
-def index
-	
-end
+  def index
+
+  end
 
 # def share
 
@@ -17,15 +17,14 @@ end
 # end
 
 
-
-	def create
-	# 	if @experience.save
- #  flash[:success] = "Thanks! I'll be in touch soon!"
- #  redirect_to :action => 'index'
- # else
-  render :action => 'index'
-# end
-	end
+  def create
+    # 	if @experience.save
+    #  flash[:success] = "Thanks! I'll be in touch soon!"
+    #  redirect_to :action => 'index'
+    # else
+    render :action => 'index'
+    # end
+  end
 
 
 end

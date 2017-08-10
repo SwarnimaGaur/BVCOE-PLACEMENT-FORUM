@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
- 
+
 
   get 'upvote/create'
 
@@ -10,42 +10,41 @@ Rails.application.routes.draw do
   get 'comment/destroy'
 
   # devise_for :users
-  devise_for :users, :controllers => { registrations: 'registrations' }
+  devise_for :users, :controllers => {registrations: 'registrations'}
 
-   root 'home#index' 
-   post 'search' => 'experience#search'
-   get 'search' => 'experience#search'
-   get 'share' => 'experience#share_exp'
-   get 'browse' => 'experience#browse_exp'
-   get 'home' => 'home#index'
-   post 'create' =>'experience#create', as: 'experiences' 
-   # get '/experience/destroy' =>'experience#destroy'
-   delete '/experience/destroy' =>'experience#destroy'
-  get 'experience/:id/edit' => 'experience#edit' , as: :edit_experience 
+  root 'home#index'
+  post 'search' => 'experience#search'
+  get 'search' => 'experience#search'
+  get 'share' => 'experience#share_exp'
+  get 'browse' => 'experience#browse_exp'
+  get 'home' => 'home#index'
+  post 'create' => 'experience#create', as: 'experiences'
+  # get '/experience/destroy' =>'experience#destroy'
+  delete '/experience/destroy' => 'experience#destroy'
+  get 'experience/:id/edit' => 'experience#edit', as: :edit_experience
   post 'experience/:id', to: 'experience#update'
-   post 'share' => 'home#share'
-   post 'comment/create' => 'comment#create'
-   post 'browse' => 'comment#create'
-   post 'upvote/create' => 'upvote#create'
-  post  'upvote/destroy' => 'upvote#destroy'
+  post 'share' => 'home#share'
+  post 'comment/create' => 'comment#create'
+  post 'browse' => 'comment#create'
+  post 'upvote/create' => 'upvote#create'
+  post 'upvote/destroy' => 'upvote#destroy'
 
 
-   delete '/comment/destroy' =>'comment#destroy'
+  delete '/comment/destroy' => 'comment#destroy'
 
   post 'answer/create' => 'answer#create'
   delete 'answer/destroy' => 'answer#destroy'
   post 'upvote/createAns' => 'upvote#createAns'
-  post  'upvote/destroyAns' => 'upvote#destroyAns'
+  post 'upvote/destroyAns' => 'upvote#destroyAns'
 
   post 'question/update' => 'question#update'
-  get 'question/:id/edit' => 'question#edit' , as: :edit_question
+  get 'question/:id/edit' => 'question#edit', as: :edit_question
   get 'question/ask' => 'question#ask'
   post 'question/create' => 'question#create'
-  get 'question/QnA' =>'question#QnA'
+  get 'question/QnA' => 'question#QnA'
   delete 'question/destroy' => 'question#destroy'
 
 
-  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

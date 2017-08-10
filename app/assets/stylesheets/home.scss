@@ -2,29 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-*{
-	margin: 0;
-	padding: 0;
-	font-family: 'Lora', serif;
-}
-body header .nav navbar-nav {
-	font-size: 60px;
-	color: green;
-	margin:50px;
-}
-#logo{
-	height: 40px;
-	margin-top: 5px;
-}
-
-.parallax-container{
-	height: 480px;
-}
-
-.content{
-	padding: 20px;
-	display: flex;
-	justify-content:space-around;
-	background-color: grey;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Lora', serif;
 }
 
