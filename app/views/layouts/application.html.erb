@@ -27,7 +27,7 @@
 <% if alert %>
     <p class="alert alert-danger"><%= alert %></p>
 <% end %>
-<% if params[:controller] != 'home' && params[:action] != 'index'%>
+<% if params[:controller] != 'home' && params[:action] != 'index' %>
     <header>
       <div id='header_container'>
         <div>forum</div>
@@ -36,11 +36,11 @@
           <%= link_to "Browse  experiences", browse_path, class: "btn btn-primary" %>
           <%= link_to "QnA", question_QnA_path, class: "btn btn-primary" %>
           <% if user_signed_in? %>
-              <%= link_to "Logout", destroy_user_session_path ,method: :delete , class: "btn btn-primary" %>
+              <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
           <% else %>
               <%= link_to "SignUp", new_user_registration_path, method: :get, class: "btn btn-primary" %>
-              <%= link_to "Login", new_user_session_path,method: :get, class: "btn btn-primary" %>
-        <% end %>
+              <%= link_to "Login", new_user_session_path, method: :get, class: "btn btn-primary" %>
+          <% end %>
         </div>
       </div>
     </header>
@@ -54,10 +54,10 @@
 <% end %>
 
 
-<% if params[:controller] != 'home' && params[:action] != 'index'%>
-  <footer>
+<% if params[:controller] != 'home' && params[:action] != 'index' %>
+    <footer>
 
-  </footer>
+    </footer>
 <% end %>
 
 </body>
