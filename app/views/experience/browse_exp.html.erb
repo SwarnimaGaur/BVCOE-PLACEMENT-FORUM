@@ -7,16 +7,18 @@
           <span class="card_round position_absolute"><%= experience.round_no %></span>
           <span class="card_branch_year position_absolute">Branch:<%= experience.user.branch %> Passing Year:<%= experience.user.year_pass %></span>
         </div>
-        <div class="main_desc mdl-card mdl-card mdl-shadow--2dp" id="<%= "experience_" + experience.id.to_s + "_sub_card" %>" style="display: none;" >
+        <div class="main_desc mdl-shadow--2dp" id="<%= "experience_" + experience.id.to_s + "_sub_card" %>" >
           <div id='upper-actions'>
           </div>
-          <div id="content">
-            <%= experience.content %>
+          <div class="content">
+            <h4>Experience</h4>
+            <span><%= experience.content %></span>
           </div>
-          <div id="tips">
-            <%= experience.tips %>
+          <div class="tips">
+            <h4>Tips</h4>
+            <span><%= experience.tips %></span>
           </div>
-          <div id='actions'>
+          <div class='actions'>
             <% if user_signed_in? %>
                 <% if current_user.id == experience.user_id %>
                     <%= link_to edit_experience_path(id: experience.id),
@@ -34,7 +36,7 @@
                 <% session[:experience_id] = experience.id %>
             <% end %>
           </div>
-          <div id="upvotes">
+          <div class="upvotes">
             <% if user_signed_in? %>
                 <% if experience.upvotes.where(user_id: current_user.id).first %>
                     <div>
@@ -63,7 +65,7 @@
                 <% end %>
             <% end %>
           </div>
-          <div id="comment_container">
+          <div class="comment_container">
             <% experience.comments.each do |comment| %>
                 <div class="comment">
                   <div class="comment_main">
