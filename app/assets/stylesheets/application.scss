@@ -68,33 +68,33 @@ body {
             margin: 5px;
             background-color: white;
             position: relative;
-            span.card_company.position_absolute{
+            span.card_company.position_absolute {
               top: 18px;
               left: 18px;
               font-size: 30px;
               font-weight: 700;
               color: darkblue;
             }
-            span.card_name.position_absolute{
+            span.card_name.position_absolute {
               bottom: 36px;
               left: 18px;
               font-size: 20px;
               color: darkgray;
             }
-            span.card_branch_year.position_absolute{
+            span.card_branch_year.position_absolute {
               bottom: 15px;
               left: 18px;
               font-size: 20px;
               color: darkgray;
             }
-            span.card_round.position_absolute{
+            span.card_round.position_absolute {
               top: 40px;
               right: 20px;
               font-size: 80px;
               color: darkblue;
             }
           }
-          div.main_desc{
+          div.main_desc {
             width: 95%;
             background-color: white;
             margin: 0 auto;
@@ -102,18 +102,16 @@ body {
             padding: 20px;
             div.content {
               width: 100%;
-              span{
+              span {
                 width: 90%;
-                background-color: yellow;
                 word-wrap: break-word;
 
               }
             }
             div.tips {
               width: 100%;
-              span{
+              span {
                 width: 90%;
-                background-color: yellow;
                 word-wrap: break-word;
 
               }
@@ -152,6 +150,7 @@ body {
   width: 100%;
   padding: 10px;
 }
+
 .position_absolute {
   position: absolute;
 }

@@ -5,9 +5,10 @@
           <span class="card_company position_absolute"><%= experience.user.company.capitalize %></span>
           <span class="card_name position_absolute"><%= experience.user.name.capitalize %></span>
           <span class="card_round position_absolute"><%= experience.round_no %></span>
-          <span class="card_branch_year position_absolute">Branch:<%= experience.user.branch %> Passing Year:<%= experience.user.year_pass %></span>
+          <span class="card_branch_year position_absolute">Branch:<%= experience.user.branch %>
+            Passing Year:<%= experience.user.year_pass %></span>
         </div>
-        <div class="main_desc mdl-shadow--2dp" id="<%= "experience_" + experience.id.to_s + "_sub_card" %>" >
+        <div class="main_desc mdl-shadow--2dp" id="<%= "experience_" + experience.id.to_s + "_sub_card" %>">
           <div id='upper-actions'>
           </div>
           <div class="content">
@@ -84,16 +85,16 @@
                     <% end %>
                   </div>
                   <div class="comment_content"><%= comment.com %></div>
-                  <% if user_signed_in? %>
-                      <div class="comment_create">
-                        <%= form_tag url_for({:controller => "comment", :action => "create", method: :post}) do %>
-                            <%= text_area_tag :com %>
-                            <%= hidden_field_tag :user_id, current_user.id %>
-                            <%= hidden_field_tag :experience_id, session[:experience_id] %>
-                            <%= button_tag 'Comment',
-                                           class: "mdl-button mdl-js-button mdl-js-ripple-effect" %>
-                        <% end %>
-                      </div>
+                </div>
+            <% end %>
+            <% if user_signed_in? %>
+                <div class="comment_create">
+                  <%= form_tag url_for({:controller => "comment", :action => "create", method: :post}) do %>
+                      <%= text_area_tag :com %>
+                      <%= hidden_field_tag :user_id, current_user.id %>
+                      <%= hidden_field_tag :experience_id, session[:experience_id] %>
+                      <%= button_tag 'Comment',
+                                     class: "mdl-button mdl-js-button mdl-js-ripple-effect" %>
                   <% end %>
                 </div>
             <% end %>
