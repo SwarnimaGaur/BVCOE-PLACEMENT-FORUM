@@ -1,16 +1,46 @@
-<div class="accordion_container">
+<div id="browse_exp_container">
   <% @experiences.each do |experience| %>
+  <div class="selector_card mdl-card " id="experience_<%= experience.id %>">
+      <span class="card_company"><%= experience.user.company.capitalize %></span>
+      <span class="card_name"><%= experience.user.name.capitalize %></span>
+      <span class="card_round"><%= experience.round_no %></span>
+      <span class="card_branch">Branch:<%= experience.user.branch %></span>
+      <span class="card_year">Passing Year:<%= experience.user.year_pass %><span>
+  </div>
+  <% end %>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="accordion_container">
       <div class="accordion">
         <dl>
           <dt>
             <a href="#<%= 'experience_' + experience.id.to_s %>" aria-expanded="false" aria-controls="accordion1" class="accordion-title accordionTitle js-accordionTrigger">
-              <div>
-                <span><%= experience.user.company.capitalize %></span>
-                <span><%= experience.user.name.capitalize %></span>
-                <span><%= experience.round_no %></span>
-                <span>Branch:<%= experience.user.branch %></span>
-                <span>Passing Year:<%= experience.user.year_pass %><span>
-              </div>
+
             </a>
           </dt>
           <dd class="accordion-content accordionItem is-collapsed" id="<%= 'experience_' + experience.id.to_s %>" aria-hidden="true">
@@ -75,6 +105,8 @@
                   <% end %>
                   <!-- <i class="material-icons">keyboard_arrow_up</i>
                   <i class="material-icons">keyboard_arrow_down</i> -->
+                  </dd>
+                  </dl>
                   </div>
                   <div id="comment_container">
                     <% experience.comments.each do |comment| %>
@@ -116,4 +148,3 @@
                   </div>
                   </div>
               <% end %>
-  <% end %>
