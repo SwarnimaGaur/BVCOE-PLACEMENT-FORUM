@@ -4,14 +4,21 @@
     <div id="overlapper_two"></div>
     <div id="right_part"></div>
     <div id="left_overlay">
-      <div id="share_button">
-        <span>Share Experiences</span>
-      </div>
+      <%= link_to share_path do %>
+          <div id="share_button">
+            <span>Share Experiences</span>
+          </div>
+      <% end %>
     </div>
     <div id="right_overlay">
-      <div id="browse_button">
-        <span>Browse Experiences</span>
-      </div>
+      <%= link_to browse_path do %>
+          <div id="browse_button">
+            <span>Browse Experiences</span>
+          </div>
+      <% end %>
+    </div>
+    <div id="center_part">
+      <span>BVCOE Placement Forum</span>
     </div>
   </div>
 </div>
