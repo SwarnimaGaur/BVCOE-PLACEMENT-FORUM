@@ -50,11 +50,61 @@ body {
       div#right_part{
         width: 60%;
         z-index: 0;
-        filter: blur(2px);
+        filter: blur(5px);
         height: inherit;
         background-image: url("/BVCOE-Delhi.jpg");
         background-size: cover;
         float: right;
+      }
+      div#left_overlay{
+        width: 50%;
+        z-index: 5;
+        height: inherit;
+        left: 0;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        div#share_button{
+          width: 400px;
+          height: 80px;
+          border: 4px solid white;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: white;
+          font-size: 40px;
+        }
+        div#share_button:hover {
+          background-color: white;
+          color: #454544;
+        }
+      }
+      div#right_overlay{
+        width: 50%;
+        z-index: 5;
+        height: inherit;
+        right: 0;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        div#browse_button{
+          width: 400px;
+          height: 80px;
+          border: 4px solid black;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: black;
+          font-size: 40px;
+        }
+        div#browse_button:hover {
+          background-color: black;
+          color: white;
+        }
       }
     }
   }
@@ -177,6 +227,15 @@ body {
 .main_btn {
   background-color: transparent;
   color: darkblue;
+  font-size: 30px;
+  border: 2px solid darkblue;
+  font-family: 'Lora', serif;
+  width: 100%;
+  padding: 10px;
+}
+.main_btn:hover {
+  background-color: darkblue;
+  color: white;
   font-size: 30px;
   border: 2px solid darkblue;
   font-family: 'Lora', serif;
