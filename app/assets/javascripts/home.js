@@ -1,4 +1,7 @@
 $(document).ready(function () {
+    console.log()
+    $('#page_container').height($(window).height());
+    $('#page_container').width($(window).width());
     selector_cards = $('.selector_card');
     main_descs = $('.main_desc').hide();
 
